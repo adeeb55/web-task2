@@ -196,3 +196,48 @@ const changeCheckbox = (taskElement, taskObject) => {
   taskCheckbox.checked = taskObject.completed;
   updateDeleteButtonsState();
 };
+const renameTask = (taskElement, taskObject) => {
+  const editBtn = taskElement.querySelector(".edit-btn");
+  editBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    showPopupEdit();
+
+    const popupEditForm = document.getElementById("popupEditForm");
+    popupEditInput.value = taskObject.text;
+    currentlyEditingTaskId = taskObject.id;
+
+    popupEditForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const popupEditInput = document.getElementById("popupEditInput");
+      const newText = popupEditInput.value.trim();
+
+      if (newText.length == 0) {
+        popupBeEmpty.style.display = "flex";
+        popupFiveCharLong.style.display = "none";
+        popupStartWithNumber.style.display = "none";
+      } else if (newText.length < 5) {
+        popupBeEmpty.style.display = "none";
+        popupFiveCharLong.style.display = "flex";
+        popupStartWithNumber.style.display = "none";
+      } else if (regex.test(newText)) {
+        popupBeEmpty.style.display = "none";
+        popupFiveCharLong.style.display = "none";
+        popupStartWithNumber.style.display = "flex";
+      } else if (currentlyEditingTaskId !== null) {
+        popupBeEmpty.style.display = "none";
+        popupFiveCharLong.style.display = "none";
+        popupStartWithNumber.style.display = "none";
+
+        const taskIndex = allTasksArray.findIndex(
+          (task) => task.id === currentlyEditingTaskId
+        );
+        if (taskIndex !== -1) {
+          allTasksArray[taskIndex].text = newText;
+          saveTasks();
+          createTasksList();
+          hidePopupEdit();
+        }
+      }
+    });
+  });
+};
