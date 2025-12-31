@@ -111,3 +111,39 @@ const createTask = () => {
     saveInputAndReset(taskObject);
   }
 };
+const saveInputAndReset = (taskObject) => {
+  allTasksArray.push(taskObject);
+  createTasksList();
+  saveTasks();
+  toDoInput.value = "";
+};
+
+filterBtnAll.addEventListener("click", (e) => {
+  e.preventDefault();
+  filterStatus = "all";
+  createTasksList();
+});
+
+filterBtnDone.addEventListener("click", (e) => {
+  e.preventDefault();
+  filterStatus = "done";
+  createTasksList();
+});
+
+filterBtnTodo.addEventListener("click", (e) => {
+  e.preventDefault();
+  filterStatus = "todo";
+  createTasksList();
+});
+
+const createTasksList = () => {
+  tasksList.innerHTML = "";
+  let tasksArrayToShow = changeFilterStatus();
+
+  tasksArrayToShow.forEach((taskObject) => {
+    taskElement = createOneTask(taskObject);
+    tasksList.append(taskElement);
+  });
+
+  updateDeleteButtonsState();
+};
