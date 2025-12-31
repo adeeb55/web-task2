@@ -25,3 +25,16 @@
   background-color: rgba(0, 0, 0, 0.239);
   display: none;
 }
+#popupEditWrapper {
+  background-color: white;
+  width: 100%;
+  max-width: 20%;
+  height: 20vh;
+  border-radius: 1rem;
+  padding: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
