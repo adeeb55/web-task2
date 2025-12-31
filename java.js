@@ -241,3 +241,124 @@ const renameTask = (taskElement, taskObject) => {
     });
   });
 };
+const deleteTask = (taskElement, taskObject) => {
+  const deleteBtn = taskElement.querySelector(".delete-btn");
+
+  deleteBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentlyDeletingTaskId = taskObject.id;
+    showPopupDeleteOne();
+
+    const popupDeleteOneCancelBtn = document.getElementById(
+      "popupDeleteOneCancelBtn"
+    );
+    const popupDeleteOneConfirmBtn = document.getElementById(
+      "popupDeleteOneConfirmBtn"
+    );
+
+    popupDeleteOneCancelBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      hidePopupDeleteOne();
+      currentlyDeletingTaskId = null;
+    });
+
+    popupDeleteOneConfirmBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentlyDeletingTaskId !== null) {
+        allTasksArray = allTasksArray.filter(
+          (task) => task.id !== currentlyDeletingTaskId
+        );
+        saveTasks();
+        createTasksList();
+        hidePopupDeleteOne();
+        currentlyDeletingTaskId = null;
+      }
+    });
+  });
+};
+
+const showPopupDeleteOne = () => {
+  const popup = document.getElementById("popupDeleteOne");
+  popup.style.display = "flex";
+};
+
+const hidePopupDeleteOne = () => {
+  const popup = document.getElementById("popupDeleteOne");
+  popup.style.display = "none";
+};
+
+const showPopupEdit = () => {
+  const popupEdit = document.getElementById("popupEdit");
+  popupEdit.style.display = "flex";
+};
+
+const hidePopupEdit = () => {
+  const popupEdit = document.getElementById("popupEdit");
+  popupEdit.style.display = "none";
+};
+
+popupCancelBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  hidePopupEdit();
+});
+
+const saveTasks = () => {
+  const tasksJson = JSON.stringify(allTasksArray);
+  localStorage.setItem("allTasks", tasksJson);
+};
+
+const getTasks = () => {
+  const tasks = localStorage.getItem("allTasks") || "[]";
+  return JSON.parse(tasks);
+};
+
+allTasksArray = getTasks();
+createTasksList();
+
+deleteAllBtn.addEventListener("click", () => {
+  showPopupDeleteAll();
+});
+
+popupDeleteAllConfirmBtn.addEventListener("click", () => {
+  allTasksArray = [];
+  saveTasks();
+  createTasksList();
+  hidePopupDeleteAll();
+});
+popupDeleteAllCancelBtn.addEventListener("click", () => {
+  hidePopupDeleteAll();
+});
+
+const showPopupDeleteAll = () => {
+  const popup = document.getElementById("popupDeleteAll");
+  popup.style.display = "flex";
+};
+
+const hidePopupDeleteAll = () => {
+  const popup = document.getElementById("popupDeleteAll");
+  popup.style.display = "none";
+};
+
+deleteDoneBtn.addEventListener("click", () => {
+  showPopupDeleteDone();
+});
+
+popupDeleteDoneConfirmBtn.addEventListener("click", () => {
+  allTasksArray = allTasksArray.filter((taskObject) => !taskObject.completed);
+  saveTasks();
+  createTasksList();
+  hidePopupDeleteDone();
+});
+popupDeleteDoneCancelBtn.addEventListener("click", () => {
+  hidePopupDeleteDone();
+});
+
+const showPopupDeleteDone = () => {
+  const popup = document.getElementById("popupDeleteDone");
+  popup.style.display = "flex";
+};
+
+const hidePopupDeleteDone = () => {
+  const popup = document.getElementById("popupDeleteDone");
+  popup.style.display = "none";
+};
