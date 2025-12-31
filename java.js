@@ -24,3 +24,11 @@ const popupDeleteAllCancelBtn = document.getElementById(
 const popupDeleteAllConfirmBtn = document.getElementById(
   "popupDeleteAllConfirmBtn"
 );
+const popupDeleteDoneCancelBtn = document.getElementById(
+  "popupDeleteDoneCancelBtn"
+);
+const popupDeleteDoneConfirmBtn = document.getElementById(
+  "popupDeleteDoneConfirmBtn"
+);
+const deleteBtnsWrapper = document.getElementById("deleteBtnsWrapper");
+const noTasksText = document.getElementById("noTasksText");
