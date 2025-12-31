@@ -147,3 +147,52 @@ const createTasksList = () => {
 
   updateDeleteButtonsState();
 };
+const changeFilterStatus = () => {
+  if (filterStatus == "all") {
+    return allTasksArray;
+  } else if (filterStatus == "done") {
+    return allTasksArray.filter((taskObject) => taskObject.completed);
+  } else if (filterStatus == "todo") {
+    return allTasksArray.filter((taskObject) => !taskObject.completed);
+  }
+};
+
+const createOneTask = (taskObject) => {
+  const taskElement = document.createElement("li");
+  const taskId = "task-" + taskObject.id;
+  const taskText = taskObject.text;
+  taskElement.className = "task";
+  taskElement.innerHTML = `
+              <input type="checkbox" id="${taskId}" />
+              <label class="taskText" for="${taskId}">${taskText}</label>
+              <label class="custom-checkbox" for="${taskId}">
+                <i class="fa-solid fa-check"></i>
+              </label>
+              <div class="taskIcons">
+                <i class="fa-solid fa-pen edit-btn"></i>
+                <i class="fa-solid fa-trash delete-btn"></i>
+              </div>
+  `;
+
+  changeCheckbox(taskElement, taskObject);
+  renameTask(taskElement, taskObject);
+  deleteTask(taskElement, taskObject);
+
+  return taskElement;
+};
+
+const changeCheckbox = (taskElement, taskObject) => {
+  const taskCheckbox = taskElement.querySelector("input");
+  taskCheckbox.addEventListener("change", () => {
+    const taskIndex = allTasksArray.findIndex(
+      (task) => task.id === taskObject.id
+    );
+    if (taskIndex !== -1) {
+      allTasksArray[taskIndex].completed = taskCheckbox.checked;
+      saveTasks();
+      createTasksList();
+    }
+  });
+  taskCheckbox.checked = taskObject.completed;
+  updateDeleteButtonsState();
+};
