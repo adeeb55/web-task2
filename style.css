@@ -132,3 +132,151 @@
     }
   }
 }
+body {
+  height: 100vh;
+
+  label {
+    font-size: 1.3rem;
+  }
+
+  h1,
+  label {
+    color: var(--text-color);
+  }
+  button {
+    background-color: var(--primary-color);
+    color: var(--btn-text-color);
+    border: none;
+    height: 2.5rem;
+    border-radius: 0.3rem;
+    &:hover {
+      background-color: var(--btn-text-color);
+      color: var(--text-color);
+      border: solid 0.17rem var(--primary-color);
+      cursor: pointer;
+    }
+  }
+}
+
+#wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5%;
+}
+
+#toDoInputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100vw;
+  max-width: 60%;
+  margin-top: 1.5rem;
+}
+
+#toDoInputForm {
+  padding: 1rem;
+  border: solid 0.17rem var(--border-color);
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+
+  #iconAndInput {
+    display: flex;
+    width: 100%;
+    i {
+      padding: 0.7rem;
+      background-color: var(--primary-color);
+      color: var(--btn-text-color);
+      border-radius: 0.18rem;
+    }
+    input {
+      border: solid 0.17rem var(--border-color);
+      border-left: none;
+      border-radius: 0.18rem;
+      width: 100%;
+      padding-left: 1rem;
+    }
+  }
+  #inputValidation {
+    color: var(--trash-icon-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    #beEmpty {
+      display: none;
+    }
+    #startWithNumber {
+      display: none;
+    }
+    #fiveCharLong {
+      display: none;
+    }
+  }
+  #addNewTaskBtn {
+    width: 100%;
+  }
+}
+
+#toDoListWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.7rem;
+  width: 100vw;
+  max-width: 60%;
+  padding: 1rem;
+}
+#filterWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.filterBtn {
+  width: 30%;
+  &:focus {
+    background-color: var(--btn-text-color);
+    color: var(--text-color);
+    border: solid 0.17rem var(--primary-color);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0.5rem;
+  background-color: var(--webkit-scrollbar-color);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 1rem;
+}
+
+#tasksWrapper {
+  width: 100%;
+
+  #tasksList {
+    overflow-y: auto;
+    max-height: 23rem;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
