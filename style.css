@@ -1,0 +1,10 @@
+:root {
+  --text-color: black;
+  --btn-text-color: white;
+  --primary-color: #16a3b5;
+  --delete-btn-color: #db3446;
+  --trash-icon-color: #cc3d40;
+  --pen-icon-color: #ffc20b;
+  --border-color: #e4e4e4;
+  --webkit-scrollbar-color: #eaeaea;
+}
