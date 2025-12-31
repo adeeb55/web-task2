@@ -280,3 +280,89 @@ body {
     gap: 1rem;
     padding: 0.5rem;
   }
+.task {
+    border: solid 0.17rem var(--border-color);
+    border-radius: 0.18rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    .taskText {
+      flex-grow: 1;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .custom-checkbox {
+      border: solid 0.11rem var(--text-color);
+      font-size: 0.8rem;
+      margin-right: 1rem;
+      .fa-check {
+        padding: 0.08rem;
+        color: rgb(7, 171, 7);
+        font-size: 0.8rem;
+        visibility: hidden;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+    input[type="checkbox"]:checked ~ .custom-checkbox {
+      .fa-check {
+        visibility: visible;
+      }
+    }
+    input[type="checkbox"]:checked ~ .taskText {
+      text-decoration: line-through;
+      color: var(--delete-btn-color);
+    }
+    .taskIcons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      i {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .fa-pen {
+        color: var(--pen-icon-color);
+      }
+      .fa-trash {
+        color: var(--trash-icon-color);
+      }
+    }
+  }
+}
+
+#noTasksText {
+  font-size: 1.6rem;
+}
+
+
+#deleteBtnsWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  .deleteBtns {
+    background-color: var(--delete-btn-color);
+    width: 35%;
+    &:hover {
+      color: var(--text-color);
+      background-color: var(--btn-text-color);
+      border: solid 0.17rem var(--delete-btn-color);
+    }
+  }
+  button:disabled {
+    background-color: #dd6d6fd5;
+    pointer-events: none;
+  }
+}
