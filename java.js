@@ -21,3 +21,6 @@ const deleteDoneBtn = document.getElementById("deleteDoneBtn");
 const popupDeleteAllCancelBtn = document.getElementById(
   "popupDeleteAllCancelBtn"
 );
+const popupDeleteAllConfirmBtn = document.getElementById(
+  "popupDeleteAllConfirmBtn"
+);
